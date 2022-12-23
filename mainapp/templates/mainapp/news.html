@@ -8,13 +8,13 @@
 
       <div class="col-lg-8">
 
-        {% for i in double_range %}
+        {% for news in newsarray %}
           <div class="card my-2">
             <div class="card-body">
-              <h5 class="card-title">{{ news_title }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{ datetime_obj|date:"d-m-Y h:i:s"}}</h6>
-              <p class="card-text">{{ news_preview }}</p>
-              <a href="#" class="card-link">Подробнее</a>
+              <h5 class="card-title">{{ news.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ news.date }}</h6>
+              <p class="card-text">{{ news.content }}</p>
+              <a href="{{ news.link }}" class="card-link">Подробнее</a>
             </div>
           </div>
         {% endfor %}

@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 from django.views.generic import TemplateView
@@ -14,6 +15,10 @@ class NewsPageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["news_title"] = "Громкий новостной заголовок"
         context["news_preview"] = "Предварительное описание, которое заинтересует каждого"
+        with open("data/newspost.json") as f_n:
+            f_n_content = f_n.read()
+            objs = json.loads(f_n_content)
+        context["newsarray"] = objs
         context["range"] = range(5)
         context["datetime_obj"] = datetime.now()
         return context
