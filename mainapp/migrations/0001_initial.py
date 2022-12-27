@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             fields=[
                 ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
                 ("title", models.CharField(max_length=256, verbose_name="Title")),
-                ("preambile", models.CharField(max_length=1024, verbose_name="Preambule")),
+                ("preambule", models.CharField(max_length=1024, verbose_name="Preambule")),
                 ("body", models.TextField(blank=True, null=True, verbose_name="Body")),
                 ("body_as_markdown", models.BooleanField(default=False, verbose_name="As markdown")),
                 ("created", models.DateTimeField(auto_now_add=True, verbose_name="Created")),
