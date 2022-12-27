@@ -1,7 +1,7 @@
-import json
-from datetime import datetime
-
+from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
+
+from mainapp import models as mainapp_models
 
 
 class MainPageView(TemplateView):
@@ -11,21 +11,41 @@ class MainPageView(TemplateView):
 class NewsPageView(TemplateView):
     template_name = "mainapp/news.html"
 
-    def get_context_data(sekf, **kwargs):
+    def get_context_data(self, **kwargs):
+        # Get all previous data
         context = super().get_context_data(**kwargs)
-        context["news_title"] = "Громкий новостной заголовок"
-        context["news_preview"] = "Предварительное описание, которое заинтересует каждого"
-        with open("data/newspost.json") as f_n:
-            f_n_content = f_n.read()
-            objs = json.loads(f_n_content)
-        context["newsarray"] = objs
-        context["range"] = range(5)
-        context["datetime_obj"] = datetime.now()
+        # Create your own data
+        context["news_qs"] = mainapp_models.News.objects.all()[:5]
         return context
 
 
-class CoursesPageView(TemplateView):
+class NewsPageDetailView(TemplateView):
+    template_name = "mainapp/news_detail.html"
+
+    def get_context_data(self, pk=None, **kwargs):
+        context = super().get_context_data(pk=pk, **kwargs)
+        context["news_object"] = get_object_or_404(mainapp_models.News, pk=pk)
+        return context
+
+
+class CoursesListView(TemplateView):
     template_name = "mainapp/courses_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CoursesListView, self).get_context_data(**kwargs)
+        context["objects"] = mainapp_models.Courses.objects.all()[:7]
+        return context
+
+
+class CoursesDetailView(TemplateView):
+    template_name = "mainapp/courses_detail.html"
+
+    def get_context_data(self, pk=None, **kwargs):
+        context = super(CoursesDetailView, self).get_context_data(**kwargs)
+        context["course_object"] = get_object_or_404(mainapp_models.Courses, pk=pk)
+        context["lessons"] = mainapp_models.Lesson.objects.filter(course=context["course_object"])
+        context["teachers"] = mainapp_models.CourseTeachers.objects.filter(course=context["course_object"])
+        return context
 
 
 class ContactsPageView(TemplateView):
