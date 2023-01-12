@@ -12,14 +12,14 @@ def forwards_func(apps, schema_editor):
         description="1C-программист помогает автоматизировать бизнес-процессы компании. Платформу «1С: Предприятие» используют для автоматизации процессов и решения учётных задач компании: бухгалтерских, кадровых, управленческих. Чтобы настроить её под функции бизнеса, нужны 1С-программисты.",
         description_as_markdown=True,
         cost="9500.00",
-        cover="img/no_image.svg",
+        cover="img/course009.jpg",
     )
     Courses.objects.create(
         pk=10,
         name="Проджект-менеджер",
         description="Он руководит проектом на всех этапах его жизненного цикла. Несёт ответственность за процессы и команду: определяет цели, следит за сроками, прогнозирует результаты. Главная задача — постоянно оптимизировать и улучшать IT-продукт.",
         cost="7500.00",
-        cover="img/no_image.svg",
+        cover="img/course010.jpg",
     )
     Courses.objects.create(
         pk=11,
@@ -27,7 +27,7 @@ def forwards_func(apps, schema_editor):
         description="Мидл frontend-разработчик вдумчиво выбирает технологии для реализации проекта и может аргументировать свой выбор. Уверенно чувствует себя в процессах командной разработки и самостоятельно решает комплексные задачи.",
         description_as_markdown=True,
         cost="1500.00",
-        cover="img/no_image.svg",
+        cover="img/course011.jpg",
     )
 
 
@@ -41,7 +41,7 @@ def reverse_func(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("mainapp", "0002_data_migration"),
+        ("mainapp", "0005_data_migration_news"),
     ]
 
     operations = [

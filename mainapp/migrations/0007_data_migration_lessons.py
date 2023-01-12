@@ -53,7 +53,7 @@ def reverse_func(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("mainapp", "0003_data_migration_courses"),
+        ("mainapp", "0006_data_migration_courses"),
     ]
 
     operations = [
