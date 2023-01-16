@@ -61,6 +61,7 @@ class RegisterView(TemplateView):
                     email=request.POST.get("email"),
                 )
                 new_user.set_password(request.POST.get("password1"))
+                new_user.username = str.lower(new_user.username)
                 new_user.save()
                 messages.add_message(request, messages.INFO, _("Registration success!"))
                 return HttpResponseRedirect(reverse_lazy("authapp:login"))
