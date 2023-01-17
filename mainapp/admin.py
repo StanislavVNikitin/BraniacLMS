@@ -7,6 +7,7 @@ from mainapp import models as mainapp_models
 @admin.register(mainapp_models.News)
 class NewAdmin(admin.ModelAdmin):
     search_fields = ["title", "preambule", "body"]
+    list_filter = ["created"]
 
 
 @admin.register(mainapp_models.Lesson)
@@ -27,6 +28,13 @@ class LessonAdmin(admin.ModelAdmin):
         queryset.update(deleted=True)
 
     mark_deleted.short_description = _("Mark deleted")
+
+
+@admin.register(mainapp_models.Courses)
+class CoursesAdmin(admin.ModelAdmin):
+    list_display = ["name", "description", "deleted"]
+    list_filter = ["created", "cost"]
+    search_fields = ["name", "description", "body"]
 
 
 @admin.register(mainapp_models.CourseTeachers)
