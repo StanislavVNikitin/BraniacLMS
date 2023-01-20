@@ -31,6 +31,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             "unique": _("Пользователь с таким username уже существует."),
         },
     )
+    login = models.CharField(
+        max_length=150,
+        unique=True,
+        error_messages={
+            "unique": _("Пользователь с таким username уже существует."),
+        },
+    )
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
     age = models.PositiveIntegerField(blank=True, null=True)
@@ -72,6 +79,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def clean(self):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
+        self.login = str.lower(self.username)
 
     def get_full_name(self):
         """
