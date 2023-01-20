@@ -25,7 +25,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         _("username"),
         max_length=150,
         unique=True,
-        help_text=_("Рекомендуется. Не более 150 знаков. Может содержать символы, цифры и спецсимволы @/./+/-/_ ."),
+        help_text=_("Рекомендуется. Не более 150 знаков. Может содержать только символы и цифры."),
         validators=[username_validator],
         error_messages={
             "unique": _("Пользователь с таким username уже существует."),
