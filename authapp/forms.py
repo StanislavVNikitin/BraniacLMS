@@ -31,7 +31,7 @@ class CustomUserCreationForm(UserCreationForm):
         )
         field_classes = {"username": UsernameField}
 
-    def clean_username(self):
+    def clean_login(self):
         return str.lower(self.cleaned_data.get("username"))
 
 
@@ -61,5 +61,5 @@ class CustomUserChangeForm(forms.ModelForm):
             raise ValidationError(_("Please, enter a valid age!"))
         return data
 
-    def clean_username(self):
+    def clean_login(self):
         return str.lower(self.cleaned_data.get("username"))
