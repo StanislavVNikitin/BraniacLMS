@@ -25,17 +25,17 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         _("username"),
         max_length=150,
         unique=True,
-        help_text=_("Рекомендуется. Не более 150 знаков. Может содержать только символы и цифры."),
+        help_text=_("Required. 150 characters or fewer. ASCII letters and digits only."),
         validators=[username_validator],
         error_messages={
-            "unique": _("Пользователь с таким username уже существует."),
+            "unique": _("A user with that username already exists."),
         },
     )
     login = models.CharField(
         max_length=150,
         unique=True,
         error_messages={
-            "unique": _("Пользователь с таким username уже существует."),
+            "unique": _("A user with that username already exists."),
         },
     )
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
@@ -47,7 +47,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         max_length=256,
         unique=True,
         error_messages={
-            "unique": _("Пользователь с таким email уже существует."),
+            "unique": _("A user with that email address already exists."),
         },
     )
     is_staff = models.BooleanField(
