@@ -3,10 +3,10 @@
   Новости
 {% endblock title %}
 {% block content %}
-  {% if page_num %}
+  {% if page_obj %}
     <div class="card my-2">
       <div class="card-body">
-        <p class="card-text">Текущая страница: {{ page_num }}</p>
+        <p class="card-text">Текущая страница: {{ page_obj }}</p>
       </div>
     </div>
   {% endif %}
