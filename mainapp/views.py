@@ -56,13 +56,15 @@ class NewsDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = ("mainapp.delete_news",)
 
 
-class CoursesListView(TemplateView):
-    template_name = "mainapp/courses_list.html"
+class CoursesListView(ListView):
+    model = mainapp_models.Courses
+    # template_name = "mainapp/courses_list.html"
+    paginate_by = 6
 
-    def get_context_data(self, **kwargs):
-        context = super(CoursesListView, self).get_context_data(**kwargs)
-        context["objects"] = mainapp_models.Courses.objects.all()[:7]
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(CoursesListView, self).get_context_data(**kwargs)
+    #     context["object_list"] = mainapp_models.Courses.objects.all()
+    #     return context
 
 
 class CoursesDetailView(TemplateView):
